@@ -1,0 +1,32 @@
+﻿@model IEnumerable<N01467577_PassionProject.Models.CartDto>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CartId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CartId }) |
+                @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.CartId })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>@Html.ActionLink("Add", "New")</p>

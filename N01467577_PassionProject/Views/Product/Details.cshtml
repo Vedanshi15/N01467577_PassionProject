@@ -1,0 +1,36 @@
+﻿
+@model N01467577_PassionProject.Models.ViewModels.DetailsProduct
+
+
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Product/List">Go back to list</a>
+<br />
+<h2>@Model.SelectedProduct.ProductName</h2>
+
+
+<div class="col-md-6 col-sm-12">
+    @{
+        string imageurl = "/Content/Images/Products/default.jpg";
+        if (Model.SelectedProduct.ProductHasPic)
+        {
+            imageurl = "/Content/Images/Products/" + Model.SelectedProduct.ProductId + "." + Model.SelectedProduct.PicExtension;
+        }
+    }
+    <div><img style="display:block; max-width:100%;" alt="@Model.SelectedProduct.ProductName" src="@imageurl" /></div>
+    
+</div>
+<div style="margin-top:100px;">
+    <div>Description: @Model.SelectedProduct.Description</div>
+    <div>Price: @Model.SelectedProduct.Price</div>
+</div>
+    <div style="margin-top:100px;">
+        <h3>Customers who added this product to cart</h3>
+        @foreach (var Cart in Model.RelatedCart)
+        {
+            <a href="/Cart/Details/@Cart.CartId">@Cart.CustomerName</a>
+
+        }
+    </div>

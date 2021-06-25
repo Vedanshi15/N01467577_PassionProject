@@ -1,0 +1,35 @@
+﻿@model N01467577_PassionProject.Models.CartDto
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Cart", new { id = @Model.CartId }, FormMethod.Post)) {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            <a href="/Cart/List" class="btn btn-default">Back to List</a>
+            
+        </div>
+    }
+</div>

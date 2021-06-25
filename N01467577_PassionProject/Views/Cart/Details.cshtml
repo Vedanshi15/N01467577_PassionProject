@@ -1,0 +1,48 @@
+﻿@model N01467577_PassionProject.Models.ViewModels.DetailsCart
+
+
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Cart/List">Go back to list</a>
+<br />
+<h2>Added Products by @Model.SelectedCart.CustomerName</h2>
+<div>
+    @foreach (var product in Model.AddedItems)
+    {
+        <div class="product">
+            @{
+                string imageurl = "/Content/Images/Products/default.jpg";
+                if (product.ProductHasPic)
+                {
+                    imageurl = "/Content/Images/Products/" + product.ProductId + "." + product.PicExtension;
+                }
+            }
+            <div class="productimg"><img alt="@product.ProductName" src="@imageurl" /></div>
+            
+                
+            <div class="productdetails">
+                <a href="/Product/Details/@product.ProductId">@product.ProductName</a><p>@product.Price</p>
+                <a style="color:#ab2020;" href="/Cart/Remove/@Model.SelectedCart.CartId?ProductId=@product.ProductId">[x]</a><br />
+
+            </div>
+        </div>
+
+    }
+<div class="addproduct">
+    <h2>Add more products</h2>
+    </br>
+    <form method="POST" action="/Cart/Add/@Model.SelectedCart.CartId">
+        <select name="ProductId">
+            <option value="">Select Product</option>
+            @foreach (var products in Model.AvailableItems)
+            {
+                <option value="@products.ProductId">@products.ProductName </option>
+            }
+
+        </select>
+        <input type="submit" value="Add Product" />
+    </form>
+</div>
+</div>
