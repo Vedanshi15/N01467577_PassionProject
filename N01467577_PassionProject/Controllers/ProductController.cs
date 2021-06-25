@@ -116,16 +116,8 @@ namespace N01467577_PassionProject.Controllers
             Debug.WriteLine(jsonpayload);
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             Debug.WriteLine(ProductPic); Debug.WriteLine(jsonpayload);
-            if (response.IsSuccessStatusCode && ProductPic != null)
-            {
-                url = "ProductData/UploadProductPic/" + p.ProductId;
-                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
-                HttpContent imagecontent = new StreamContent(ProductPic.InputStream);
-                requestcontent.Add(imagecontent, "ProductPic", ProductPic.FileName);
-                response = client.PostAsync(url, requestcontent).Result;
-                return RedirectToAction("List");
-            }
-            else if (response.IsSuccessStatusCode)
+          
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
             }
