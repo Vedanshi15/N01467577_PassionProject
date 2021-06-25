@@ -45,6 +45,14 @@ namespace N01467577_PassionProject.Controllers
             IEnumerable<ProductDto> p = response.Content.ReadAsAsync<IEnumerable<ProductDto>>().Result;          
             return View(p);
         }
+        // GET: Product/UserViewProductPage 
+        public ActionResult UserViewProductPage()
+        {
+            string url = "productdata/listproducts";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<ProductDto> p = response.Content.ReadAsAsync<IEnumerable<ProductDto>>().Result;
+            return View(p);
+        }
         // GET: product/Details/2
         public ActionResult Details(int id)
         {
@@ -63,7 +71,27 @@ namespace N01467577_PassionProject.Controllers
             IEnumerable<CartDto> RelatedCart = response.Content.ReadAsAsync<IEnumerable<CartDto>>().Result;
             ViewModel.RelatedCart = RelatedCart;   
             return View(ViewModel);
-        }  
+        }
+        // GET: product/CustomerProductDetailsView/2
+        public ActionResult CustomerProductDetailsView(int id)
+        {
+            GetApplicationCookie();
+            DetailsProduct ViewModel = new DetailsProduct();
+
+            string url = "Productdata/findProduct/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            Debug.WriteLine("The response code is ");
+            Debug.WriteLine(response.StatusCode);
+            ProductDto SelectedProduct = response.Content.ReadAsAsync<ProductDto>().Result;
+            Debug.WriteLine("Product received : ");
+            Debug.WriteLine(SelectedProduct.ProductName);
+            ViewModel.SelectedProduct = SelectedProduct;
+            url = "cartdata/listcartsforproduct/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<CartDto> RelatedCart = response.Content.ReadAsAsync<IEnumerable<CartDto>>().Result;
+            ViewModel.RelatedCart = RelatedCart;
+            return View(ViewModel);
+        }
         public ActionResult Error()
         {
             return View();        }

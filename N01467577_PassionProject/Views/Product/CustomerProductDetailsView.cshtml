@@ -1,0 +1,104 @@
+﻿
+@model N01467577_PassionProject.Models.ViewModels.DetailsProduct
+
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+
+
+
+<section class="page-title" style="background-image: url(/assets/user/images/background/6.jpg);">
+    <div class="auto-container">
+        <h1>Products Detail</h1>
+    </div>
+    <!--Page Info-->
+    <div class="page-info">
+        <div class="auto-container clearfix">
+            <ul class="bread-crumb clearfix">
+                <li><a href="index-2.html">Home</a></li>
+                <li>Products Detail</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Content Side-->
+            <div class="content-side pull-right col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="shop-single">
+                    <div class="product-details">
+                        <!--Basic Details-->
+                        <div class="basic-details">
+                            <div class="row clearfix">
+                                <div class="image-column col-md-5 col-sm-6 col-xs-12">
+                                    <figure class="image-box">
+                                        <a href="#" class="lightbox-image" title="Image Caption Here">
+                                            @{
+                                                string imageurl = "/Content/Images/Products/default.jpg";
+                                                if (Model.SelectedProduct.ProductHasPic)
+                                                {
+                                                    imageurl = "/Content/Images/Products/" + Model.SelectedProduct.ProductId + "." + Model.SelectedProduct.PicExtension;
+                                                }
+                                            }
+                                            <div><img style="display:block; max-width:100%;" alt="@Model.SelectedProduct.ProductName" src="@imageurl" /></div>
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="info-column col-md-7 col-sm-6 col-xs-12">
+                                    <div class="details-header">
+                                        <h4>@Model.SelectedProduct.ProductName</h4>
+
+                                        <!--   <a class="reviews" href="#">( 3 Customer Reviews )</a> -->
+                                        <div class="item-price"> @Model.SelectedProduct.Price</div>
+                                    </div>
+
+                                    <div class="text">@Model.SelectedProduct.Description</div>
+                                    <div class="other-options clearfix">
+                                        <div class="item-quantity"><input class="quantity-spinner" type="number" id="quantity" name="quantity" value="1" min="1"></div>
+
+                                        <button type="button" class="add-to-cart add_to_cart" value="@Model.SelectedProduct.ProductId"><i class="flaticon-shopping-cart-2"></i>Add To Cart</button>
+
+                                        <div class="cart-option">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Basic Details-->
+                        <!--Product Info Tabs-->
+                        <div class="product-info-tabs">
+                            <!--Product Tabs-->
+
+                        </div>
+                        <!--End Product Info Tabs-->
+                        <!--Related Projects-->
+                        <div class="related-projects">
+                            <div class="sec-title">
+                                <h2>Customers who added this <strong>Product</strong></h2>
+                            </div>
+                            <div class="row clearfix">
+                                @foreach (var Cart in Model.RelatedCart)
+                                {
+                                    <h3>@Cart.CustomerName</h3>
+
+                                }
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Sidebar Side-->
+
+
+        </div>
+    </div>
+</div>

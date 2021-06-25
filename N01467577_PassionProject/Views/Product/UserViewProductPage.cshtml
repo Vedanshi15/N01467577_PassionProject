@@ -1,0 +1,96 @@
+﻿@model IEnumerable<N01467577_PassionProject.Models.ProductDto>
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+<!--Page Title-->
+<section class="page-title" style="background-image: url(/assets/user/images/background/6.jpg);">
+    <div class="auto-container">
+        <h1>Products</h1>
+    </div>
+
+</section>
+<!--End Page Title-->
+<!--Sidebar Page Container-->
+
+<section class="product-page-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            @foreach (var item in Model)
+            {
+                <!--Shop Item-->
+                <div class="shop-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            @{
+                                string imageurl = "/Content/Images/Products/default.jpg";
+                                if (item.ProductHasPic)
+                                {
+                                    imageurl = "/Content/Images/Products/" + item.ProductId + "." + item.PicExtension;
+                                }
+                            }
+                            <img alt="@item.ProductName" src="@imageurl" />
+                        </div>
+                        <div class="overlay-box">
+                            <div class="clearfix">
+                                <h3><a href="#">@Html.DisplayFor(modelItem => item.ProductName)</a></h3>
+                                <div class="rating">
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <div class="price-and-cart clearfix">
+                                <div class="pull-left">
+                                    <div class="price"><span class="discount">$15.00</span> @Html.DisplayFor(modelItem => item.Price)</div>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="" class="cart"><span class="fa fa-shopping-cart"></span></a>
+                                </div>
+                            </div>
+
+                            <div class="price-and-cart clearfix">
+
+                                <div>
+                                    <a href="/Product/CustomerProductDetailsView/@item.ProductId" class="cart"><span>Product Detail</span></a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="lower-content">
+                            <div class="clearfix">
+                                <h3><a href="#">@Html.DisplayFor(modelItem => item.ProductName)</a></h3>
+                                <div class="rating">
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star-o"></span>
+                                </div>
+                            </div>
+                            <div class="price-and-cart clearfix">
+                                <div class="pull-left">
+                                    <div class="price"><span class="discount">$15.00</span>@Html.DisplayFor(modelItem => item.Price)</div>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="cart"><span class="fa fa-shopping-cart"></span></a>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div><!-- End Shop Item -->
+            }
+
+
+
+        </div>
+
+
+    </div>
+</section>
+
