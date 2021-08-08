@@ -6,6 +6,15 @@ I created the Tone Health Coach website with asp.net as part of my passion proje
 * CRUD
 * Authentication
 * Responsive Design
+
+## How to run?
+* Clone this repository
+* Right click the project solution
+* Select Clean Solution -> Build Solution ->Rebuild Solution
+* Create a folder named App_Data at the root of the project folder
+* Select Tools -> NuGet Package Manager -> Package Manager Console
+* Enter the command 'Update-database'
+
 ## Features
 * Product and Cart tables have many to many relationships with each other
 * Admin:
